@@ -1,7 +1,15 @@
 import React from 'react'
+import Info from './Info'
+import AppContext from '../context';
+const Drawer = ({onClose, onRevome, items = [] }) => {
+  const {setCartItems} = React.useContext(AppContext);
 
+  const [zxc, isZxc] = React.useState(false);
 
-const Drawer = ({onClose,onRevome, items = [] }) => {
+  const onClickZxc = () => {
+    isZxc(true);
+    setCartItems([]);
+  }
   return (
     <div  className="overlay">
     
@@ -15,7 +23,7 @@ const Drawer = ({onClose,onRevome, items = [] }) => {
           <div className="items">
    {
      items.map(obj => (
-      <div className="cartItem d-flex align-center mb-20">
+      <div key={obj.id} className="cartItem d-flex align-center mb-20">
       
       <div 
       style={{backgroundImage: `url(${obj.imageUrl})`}} 
@@ -44,22 +52,21 @@ const Drawer = ({onClose,onRevome, items = [] }) => {
   <b>1074 руб.</b>
   </li>
 </ul>
-<button className="greenButton">Оформить заказ
+<button onClick={onClickZxc} className="greenButton">Оформить заказ
   <img src="/img/arrow.svg" alt="" />
 </button>
 </div>
         </div>
 
     :
-    <div class="cartEmpty d-flex align-center justify-center flex-column flex">
-            <img class="mb-20" width="120px" height="120px" src="/img/empty-cart.jpg" alt="Empty" />
-            <h2>Корзина пустая</h2>
-            <p class="opacity-6">Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-            <button onClick={onClose} class="greenButton">
-              <img onClick={onClose} src="/img/arrow.svg" alt="Arrow" />
-              Вернуться назад
-            </button>
-          </div>
+    (
+      <Info 
+      title={zxc ? "Заказ оформлен!" : "Корзина пустая"}
+      descr={zxc ? 'Ваш заказ #18 скоро будет передан курьерской доставке' :'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'}
+      image={zxc ? "/img/zxc.jpg" : "/img/empty-cart.jpg"} 
+      />
+    )
+    
 
       }
     
