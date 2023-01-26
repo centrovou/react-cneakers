@@ -2,14 +2,19 @@ import React from 'react'
 import Info from './Info'
 import AppContext from '../context';
 const Drawer = ({onClose, onRevome, items = [] }) => {
-  const {setCartItems} = React.useContext(AppContext);
-
+  const {setCartItems, cartItems} = React.useContext(AppContext);
+  const totalPrice = cartItems.reduce((sum, obj)=> obj.price + sum, 0);
   const [zxc, isZxc] = React.useState(false);
 
   const onClickZxc = () => {
     isZxc(true);
     setCartItems([]);
   }
+
+
+
+
+  
   return (
     <div  className="overlay">
     
@@ -44,12 +49,12 @@ const Drawer = ({onClose, onRevome, items = [] }) => {
   <li className="d-flex">
   <span>Итого:</span>
   <div></div>
-  <b>21 498 руб. </b>
+  <b>{totalPrice} руб. </b>
   </li>
   <li className="d-flex">
   <span>Налог 5%:</span>
   <div></div>
-  <b>1074 руб.</b>
+  <b>{totalPrice / 100 * 5} руб.</b>
   </li>
 </ul>
 <button onClick={onClickZxc} className="greenButton">Оформить заказ

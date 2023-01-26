@@ -8,6 +8,8 @@ import {Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 
+import Orders from './pages/Orders';
+
 import AppContext from './context';
 
 
@@ -67,7 +69,7 @@ function App() {
     setCartItems(prev => prev.filter(item => item.id !== id));
   }
   return (
-    <AppContext.Provider value={{items,cartItems, favorites, setCardOpened , setCartItems}}>
+    <AppContext.Provider value={{items,cartItems, favorites, setCardOpened , setCartItems,onAddToCart}}>
       <div className="wrapper clear">
       
       {cardOpened && <Drawer items={cartItems} onClose={()=> setCardOpened(false)} onRevome={onRevomeItem}/>}
@@ -92,6 +94,12 @@ function App() {
         <Route path="/favorites" element={<Favorites
          items={favorites}
          onAddToFavorite={onAddToFavorite}
+          />}>
+  
+          </Route>
+
+          <Route path="/Orders" element={<Orders
+         
           />}>
   
           </Route>
