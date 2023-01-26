@@ -12,7 +12,7 @@ const Header = (props) => {
         <img width={40}  height={40} src="/img/logo.png"  alt=""/>
           <div className="headerInfo">
           <Link to='/'>
-          <h3>REACT PIZDEC</h3>
+          <h3>REACT SNEAKERS</h3>
             <p className="opacity-">Магазин лучших кроссовок</p>
             </Link>
           </div>
