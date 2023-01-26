@@ -53,6 +53,7 @@ function App() {
     }
   }
     
+  
 
   const onAddToFavorite = (obj) => {
     axios.post('https://63cde86cfba6420d4d75cbb9.mockapi.io/favorites', obj);
@@ -62,6 +63,7 @@ function App() {
   const searchInput = (event) => {
     
     setSearchValue(event.target.value);
+    
   }
 
   const onRevomeItem = (id) => {
